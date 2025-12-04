@@ -2,9 +2,9 @@
 
 - [Assignment Brief](assignment.md)
 
-Name:
+Name:Rory Maher
 
-Student Number: 
+Student Number: C24738551
 
 # Screenshots
 

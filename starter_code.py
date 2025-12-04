@@ -2,14 +2,17 @@
 
 # os is a module that lets us access the file system
 
-# Bryan Duggan likes Star Trek
-# Bryan Duggan is a great flute player
 
 import os 
 import sqlite3
 import pandas as pd
-import mysql.connector
+
+
+#import mysql.connector
 # sqlite for connecting to sqlite databases
+def get_connection(db_path="tunes.db"):
+    conn = sqlite3.connect(db_path)
+    return conn
 
 # An example of how to create a table, insert data
 # and run a select query
@@ -19,8 +22,19 @@ def do_databasse_stuff():
     cursor = conn.cursor()
 
     # Create table
-    cursor.execute('CREATE TABLE IF NOT EXISTS users (name TEXT, age INTEGER)')
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS tunes (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            book_number INTEGER,
+            title TEXT,
+            tune_type TEXT,
+            abc_text TEXT
+        )
+    """)
 
+    conn.commit()
+    conn.close()
+    
     # Insert data
     cursor.execute('INSERT INTO users (name, age) VALUES (?, ?)', ('John', 30))
 
