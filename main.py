@@ -80,6 +80,42 @@ def parse_abc_file(file_path, book_number):
 
     return tunes          # return list of all parsed tune dictionaries
 
+
+# database setup functions (improved by AI)
+
+def get_connection():
+    """Returns a connection to the SQLite database."""
+    return sqlite3.connect("tunes.db")
+
+
+def setup_database():
+    """
+    Creates the 'tunes' table with all columns matching the parser.
+    """
+    
+    conn = get_connection()
+    cursor = conn.cursor()
+    
+    cursor.execute("DROP TABLE IF EXISTS tunes;")
+    
+    cursor.execute("""
+            CREATE TABLE IF NOT EXISTS tunes (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            book_number INT,
+            tune_index TEXT,
+            title TEXT,
+            tune_type TEXT,
+            meter TEXT,
+            unit_length TEXT,
+            key_signature TEXT,
+            abc TEXT
+        );
+    """)
+    conn.commit()
+    conn.close()
+
+
+
 # this function goes through every folder to find .abc files and collects all tunes into a list
 
 def load_all_abc_files(root_folder="abc_books"):
@@ -103,34 +139,7 @@ def load_all_abc_files(root_folder="abc_books"):
             all_tunes.extend(tunes)
     return all_tunes
 
-# database setup functions (improved by AI)
 
-def get_connection():
-    """Returns a connection to the SQLite database."""
-    return sqlite3.connect("tunes.db")
-
-
-def setup_database():
-    """
-    Creates the 'tunes' table with all columns matching the parser.
-    """
-    conn = get_connection()
-    cursor = conn.cursor()
-    cursor.execute("""
-            CREATE TABLE IF NOT EXISTS tunes (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            book_number INT,
-            tune_index TEXT,
-            title TEXT,
-            tune_type TEXT,
-            meter TEXT,
-            unit_length TEXT,
-            key_signature TEXT,
-            abc TEXT
-        );
-    """)
-    conn.commit()
-    conn.close()
     
 # function to insert list of tunes into the database
 def insert_tunes(tunes):
@@ -189,10 +198,7 @@ def count_tunes_per_book(df):
 
 #function to create user menu in terminal
 def run_ui():
-    df = load_dataframe() 
-
-    
-    #menu to reflect functions available
+    df = load_dataframe()
     while True:
         print("\n Rory's Book of Tunes Database")
         print("1. Show tunes in a book")
@@ -200,9 +206,17 @@ def run_ui():
         print("3. Have a title? Search tunes!")
         print("4. Looking for a tune with a particular key signature?")
         print("5. Count tunes per book")
-        print("6. Quit")
-        break
-    
+        print("0. Quit")
+        
+        choice = input("Enter your choice: ")
+        if choice == "1":
+            book_number = int(input("Enter book number: "))
+            result = get_tunes_by_book(df, book_number)
+            print(result)
+ 
+        else:
+            print("Invalid choice. Please try again.")
+
 if __name__ == "__main__":
     setup_database()
     tunes = load_all_abc_files()
