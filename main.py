@@ -190,3 +190,19 @@ def get_tunes_by_key(df, key_signature):
 def count_tunes_per_book(df):
     return df.groupby("book_number")["id"].count()
 
+
+
+#function to create user menu in terminal
+def run_ui():
+    df = load_dataframe() 
+
+    
+    #menu to reflect functions available
+    while True:
+        print("\n Rory's Book of Tunes Database")
+        print("1. Show tunes in a book")
+        print("2. Show tunes by type")
+        print("3. Have a title? Search tunes!")
+        print("4. Looking for a tune with a particular key signature?")
+        print("5. Count tunes per book")
+        print("6. Quit")
