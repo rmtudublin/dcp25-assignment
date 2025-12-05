@@ -213,7 +213,29 @@ def run_ui():
             book_number = int(input("Enter book number: "))
             result = get_tunes_by_book(df, book_number).drop(columns=["abc"])
             print(result)
- 
+        
+        elif choice == "2":
+            tune_type = input("Enter tune type: ")
+            result = get_tunes_by_type(df, tune_type).drop(columns=["abc"])
+            print(result)
+        
+        elif choice == "3":
+            term = input("Enter title: ")
+            result = search_tunes(df, term).drop(columns=["abc"])
+            print(result)
+        
+        elif choice == "4":
+            key_signature = input("Enter key signature: ")
+            result = get_tunes_by_key(df, key_signature).drop(columns=["abc"])
+            print(result)
+
+        elif choice == "5":
+            result = count_tunes_per_book(df)
+            print(result)
+
+        elif choice == "0":
+            print("Goodbye!")
+            break
         else:
             print("Invalid choice. Please try again.")
 
