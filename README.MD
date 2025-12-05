@@ -31,8 +31,10 @@ Student Number: C24738551
 Bla bla bla
 
 # What I learned
+Parsing, and how its used to make data readable for python
 
-Bla bla bla
+github- hard reset vs soft reset (learned that the hard way)
+
 
 ## Below is how to use Markdown. You can delete this:
 

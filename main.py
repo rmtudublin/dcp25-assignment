@@ -161,3 +161,10 @@ def insert_tunes(tunes):
     conn.commit()
     conn.close()
 
+#load dataframe from the database created earlier
+def load_dataframe():
+    conn = get_connection()
+    df = pd.read_sql("SELECT * FROM tunes", conn)
+    conn.close()
+    return df
+
