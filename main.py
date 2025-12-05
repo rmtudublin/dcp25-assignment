@@ -168,3 +168,17 @@ def load_dataframe():
     conn.close()
     return df
 
+#functions to query the data
+
+# this function allows userr to get all tunes from a specific book number
+def get_tunes_by_book(df, book_number):
+    return df[df["book_number"] == book_number]
+
+# this function allows user to get all tunes of a specific type
+def get_tunes_by_type(df, tune_type):
+    return df[df["tune_type"].str.contains(tune_type, case=False, na=False)]
+
+# this function allows user to search for the title of tunes
+def search_tunes(df, term):
+    return df[df["title"].str.contains(term, case=False, na=False)]
+
