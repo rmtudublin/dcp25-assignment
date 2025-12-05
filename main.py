@@ -182,3 +182,11 @@ def get_tunes_by_type(df, tune_type):
 def search_tunes(df, term):
     return df[df["title"].str.contains(term, case=False, na=False)]
 
+#function to select tune by key signature
+def get_tunes_by_key(df, key_signature):
+    return df[df["key_signature"].str.contains(key_signature, case=False, na=False)]
+
+#function to count tunes per book
+def count_tunes_per_book(df):
+    return df.groupby("book_number")["id"].count()
+
