@@ -211,7 +211,7 @@ def run_ui():
         choice = input("Enter your choice: ")
         if choice == "1":
             book_number = int(input("Enter book number: "))
-            result = get_tunes_by_book(df, book_number)
+            result = get_tunes_by_book(df, book_number).drop(columns=["abc"])
             print(result)
  
         else:
