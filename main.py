@@ -208,10 +208,11 @@ def run_ui():
         print("5. Count tunes per book")
         print("0. Quit")
         
+
         choice = input("Enter your choice: ")
         if choice == "1":
             book_number = int(input("Enter book number: "))
-            result = get_tunes_by_book(df, book_number).drop(columns=["abc"])
+            result = get_tunes_by_book(df, book_number).drop(columns=["abc"]) #drop abc column for better readability
             print(result)
         
         elif choice == "2":

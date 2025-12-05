@@ -7,9 +7,12 @@ Name:Rory Maher
 Student Number: C24738551
 
 # Screenshots
-
+menu:
+![alt text](image.png)
+example of query:
+![alt text](image-1.png)
 # Description of the project
-
+Programme to parse a collection of traditional irish tunes from abc notation, to then extract the meaningful data and allow the user to query said data with a (limited) interactive terminal based menu 
 # Instructions for use
 
 # How it works:
@@ -18,9 +21,7 @@ Student Number: C24738551
 
 | Files | Source |
 |-----------|-----------|
-| main.py | Self written |
-| test.py | Modified from [reference]() |
-| test.py | From [reference]() |
+| main.py | Self written (fine tuned using AI)||
 
 # References
 * Item 1
@@ -28,12 +29,15 @@ Student Number: C24738551
 
 # What I am most proud of in the assignment
 
-Bla bla bla
+Having a working product at the end and also learning how parsing works as well as git commands.
 
 # What I learned
-Parsing, and how its used to make data readable for python
+Parsing, and how its used to make data readable for python, lab 5 syntax very useful for this, however struggled with parsing the most
 
-github- hard reset vs soft reset (learned that the hard way)
+use of AI assisted coding, gpt can access repositories to supply relevant code from past labs
+
+github- hard reset vs soft reset (learned that the hard way), reset to an early commit, got lucky that copilot remembered most of what i wrote.
+also learned how to use manual commands for github and how useful they are for debugging 
 
 
 ## Below is how to use Markdown. You can delete this:
