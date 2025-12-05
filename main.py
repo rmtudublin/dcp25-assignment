@@ -87,25 +87,20 @@ def load_all_abc_files(root_folder="abc_books"):
     all_tunes = []   #list to collect tunes from every file
 
     #walk through every folder and file inside abc_books/
-    for root, files in os.walk(root_folder):
-
+    for root, _, files in os.walk(root_folder):
         folder = os.path.basename(root)   #get the name of the current folder
-
-        if folder.isdigit():
-            book_number = int(folder)
-
+        if not folder.isdigit():
+            continue  # skip non-numeric folders
+        book_number = int(folder)
         #loop through every file in that folder
         for file in files:
-            
-            # builds path to file, parses and adds to list
+            if not file.endswith('.abc'):
+                continue  # only process .abc files
             path = os.path.join(root, file)
-
             # parse the file then returns a list of tune dictionaries
             tunes = parse_abc_file(path, book_number)
-
             #add those tunes to the main list
             all_tunes.extend(tunes)
-
     return all_tunes
 
 # database setup functions (improved by AI)
@@ -206,3 +201,10 @@ def run_ui():
         print("4. Looking for a tune with a particular key signature?")
         print("5. Count tunes per book")
         print("6. Quit")
+        break
+    
+if __name__ == "__main__":
+    setup_database()
+    tunes = load_all_abc_files()
+    insert_tunes(tunes)
+    run_ui()
